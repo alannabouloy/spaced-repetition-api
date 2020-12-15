@@ -46,7 +46,7 @@ const UserService = {
       const [languageId] = await trx
         .into('language')
         .insert([
-          { name: 'French', user_id },
+          { name: 'Spanish', user_id },
         ], ['id'])
 
       // when inserting words,
@@ -58,14 +58,26 @@ const UserService = {
         .first()
 
       const languageWords = [
-        ['entraine toi', 'practice', 2],
-        ['bonjour', 'hello', 3],
-        ['maison', 'house', 4],
-        ['développeur', 'developer', 5],
-        ['traduire', 'translate', 6],
-        ['incroyable', 'amazing', 7],
-        ['chien', 'dog', 8],
-        ['chat', 'cat', null],
+        ['hola', 'hello', 2],
+        ['cómo', 'how', 3],
+        ['estás', 'you are', 4],
+        ['niño', 'boy', 5],
+        ['mujer', 'woman', 6],
+        ['señora', 'ma\'am', 7],
+        ['hombre', 'man', 8],
+        ['niña', 'girl', 9],
+        ['señor', 'sir', 10],
+        ['bien', 'well', 11],
+        ['gracias', 'thank you', 12],
+        ['estoy', 'I am', 13],
+        ['muy', 'very', 14],
+        ['hablo', 'I speak', 15],
+        ['español', 'Spanish', 16],
+        ['ingles', 'English', 17],
+        ['hablas', 'you speak', 18],
+        ['practicar', 'to practice', 19],
+        ['estar', 'to be', 20],
+        ['hablar', 'to speak', null],
       ]
 
       const [languageHeadId] = await trx

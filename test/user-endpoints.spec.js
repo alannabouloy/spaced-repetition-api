@@ -172,17 +172,29 @@ describe('User Endpoints', function () {
           name: 'test name',
         }
         const expectedList = {
-          name: 'French',
+          name: 'Spanish',
           total_score: 0,
           words: [
-            { original: 'entraine toi', translation: 'practice' },
-            { original: 'bonjour', translation: 'hello' },
-            { original: 'maison', translation: 'house' },
-            { original: 'développeur', translation: 'developer' },
-            { original: 'traduire', translation: 'translate' },
-            { original: 'incroyable', translation: 'amazing' },
-            { original: 'chien', translation: 'dog' },
-            { original: 'chat', translation: 'cat' },
+            { original: 'hola', translation: 'hello' },
+            { original: 'cómo', translation: 'how' },
+            { original: 'estás', translation: 'you are' },
+            { original: 'niño', translation: 'boy' },
+            { original: 'mujer', translation: 'woman' },
+            { original: 'señora', translation: 'ma\'am' },
+            { original: 'hombre', translation: 'man' },
+            { original: 'niña', translation: 'girl' },
+            { original: 'señor', translation: 'sir' },
+            { original: 'bien', translation: 'well' },
+            { original: 'gracias', translation: 'thank you' },
+            { original: 'estoy', translation: 'I am' },
+            { original: 'muy', translation: 'very' },
+            { original: 'hablo', translation: 'I speak' },
+            { original: 'español', translation: 'Spanish' },
+            { original: 'ingles', translation: 'English' },
+            { original: 'hablas', translation: 'you speak' },
+            { original: 'practicar', translation: 'to practice' },
+            { original: 'estar', translation: 'to be' },
+            { original: 'hablar', translation: 'to speak' },
           ]
         }
         return supertest(app)
