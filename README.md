@@ -2,6 +2,8 @@
 
 This application was built using Express and Node. PostgreSQL was used for the database and it uses postgrator migrations to create necessary tables and seed them. 
 
+[Enjoy the live app here!](https://maestro-liard.vercel.app/)
+
 The client side of this application can be found [here](https://github.com/alannabouloy/spaced-repetition)
 
 There are three main routes for the endpoints. 
