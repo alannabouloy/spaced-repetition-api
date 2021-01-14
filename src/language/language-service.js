@@ -1,3 +1,5 @@
+const { LinkedList } = require("../linked-list/LinkedList");
+
 const LanguageService = {
   getUsersLanguage(db, user_id) {
     return db
@@ -39,7 +41,43 @@ const LanguageService = {
     )
     .where('id', word_id)
     .first()
-  }
+  },
+
+  checkGuess(db, language_id){
+    return db
+      .from('word')
+      .join('language', 'word.id', '=', 'language.head')
+      .select('head')
+      .where({language_id});
+  },
+
+  generateLinkedList(words, head){
+    const currHead = words.find(word => word.id === head)
+    const headIndex = words.indexOf(currHead)
+    const headNode = words.splice(headIndex, 1)
+    const list = new LinkedList()
+    list.insertLast(headNode[0])
+
+    let nextIndex = headNode[0].next;
+    let currWord = words.find(word => word.id === nextIndex)
+    list.insertLast(currWord)
+    nextIndex = currWord.next
+    currWord = words.find(word => word.id === nextIndex)
+
+    while(currWord !== null){
+      list.insertLast(currWord)
+      nextIndex = currWord.next
+      if(nextIndex === null){
+        currWord = null
+      } else {
+        currWord = words.find(word => word.id === nextIndex)
+      }
+    }
+
+    return list
+  },
+
+  
 }
 
 module.exports = LanguageService

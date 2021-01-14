@@ -28,6 +28,44 @@ class LinkedList {
             tempNode.next = new _Node(node, null);
         }
     }
+
+    sendBackM(mValue){
+        let count = 0;
+        let curr = this.head
+        //loop through list for m counts or until next node === null
+        while(count < mValue && curr.next !== null){
+            curr = curr.next
+            count += 1
+        }
+
+        const answer = new _Node(this.head.value)
+        //if curr node.next !== null then
+        if(curr.next !== null){
+            //create new node and set val to head of list and store in temp var. set next to curr.next
+            answer.next = curr.next
+            //take curr node and set curr.next to new node
+            curr.next = answer
+            //set head to head.next
+            this.head = this.head.next
+            //update words info
+            curr.value.next = answer.value.id
+            answer.value.next = answer.next.value.id
+        }
+        //if curr node.next === null 
+         else {
+            //then create new node and set val to head of list and set next to null
+            answer.next = curr.next
+            //set curr node.next to new node
+            curr.next = answer
+            //set head to head.next
+            this.head = this.head.next
+            //update words info
+            curr.value.next = answer.value.id
+            answer.value.next = null
+        }     
+        //return the new node
+        return answer
+    }
 }
 
 module.exports = {LinkedList}
