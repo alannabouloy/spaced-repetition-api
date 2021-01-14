@@ -43,11 +43,19 @@ const LanguageService = {
     .first()
   },
 
+  getHead(db, language_id){
+    return db
+    .from('language')
+    .join('word', 'word.language_id', '=', 'language.id')
+    .select('head')
+    .where({language_id})
+  },
+
   checkGuess(db, language_id){
     return db
       .from('word')
       .join('language', 'word.id', '=', 'language.head')
-      .select('head')
+      .select('*')
       .where({language_id});
   },
 
@@ -77,7 +85,27 @@ const LanguageService = {
     return list
   },
 
-  
+  updateTables(db, words, language_id, total_score){
+    return db.transaction(async (trx) => {
+      return Promise.all([
+        trx('language')
+          .where({id: language_id})
+          .update({ head: words[0].id, total_score}),
+          ...words.map((word, i) => {
+            if(i + 1 >= words.length){
+              word.next = null;
+            } else {
+              word.next = words[i + 1].id;
+            }
+            return trx('word')
+              .where({ id: word.id})
+              .update({...word})
+          })
+      ])
+    })
+  }
+
+
 }
 
 module.exports = LanguageService
